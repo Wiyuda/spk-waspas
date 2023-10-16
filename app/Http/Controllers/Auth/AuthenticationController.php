@@ -10,6 +10,9 @@ class AuthenticationController extends Controller
 {
     public function index()
     {
+        if(Auth::check()) {
+            return redirect()->route('dashboard');
+        }
         return view('auth.login');
     }
 
@@ -29,5 +32,16 @@ class AuthenticationController extends Controller
         return back()->withErrors([
             'username' => 'Username atau password tidak sesuai.',
         ])->onlyInput('username');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+    
+        $request->session()->regenerateToken();
+    
+        return redirect()->route('login');
     }
 }
