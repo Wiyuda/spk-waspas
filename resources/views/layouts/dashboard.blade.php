@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="{{ url('assets/library/sbadmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="{{ url('assets/library/sbadmin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -105,6 +108,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ url('assets/library/sbadmin/js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ url('assets/library/sbadmin/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ url('assets/library/sbadmin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ url('assets/library/sbadmin/js/demo/datatables-demo.js') }}"></script>
 
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,10 @@ Route::post('/authentication', [AuthenticationController::class, 'authentication
 Route::prefix('/admin')->group(function() {
     Route::middleware('auth')->group(function() {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('karyawan', EmployeeController::class);
+
+        Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
     });
 
-    Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
 });
