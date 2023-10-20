@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('numerical_assesments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('perilaku', ['5', '4', '3', '2', '1']);
-            $table->enum('penampilan', ['5', '4', '3', '2', '1']);
-            $table->enum('kedisiplinan', ['5', '4', '3', '2', '1']);
-            $table->enum('knowledge', ['5', '4', '3', '2', '1']);
-            $table->enum('inovasi', ['5', '4', '3', '2', '1']);
+            $table->enum('perilaku', ['1', '2', '3', '4', '5']);
+            $table->enum('penampilan', ['1', '2', '3', '4', '5']);
+            $table->enum('kedisiplinan', ['1', '2', '3', '4', '5']);
+            $table->enum('knowledge', ['1', '2', '3', '4', '5']);
+            $table->enum('inovasi', ['1', '2', '3', '4', '5']);
             $table->timestamps();
         });
     }

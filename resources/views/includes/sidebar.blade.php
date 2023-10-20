@@ -22,6 +22,10 @@
         <i class="fas fa-fw fa-user"></i>
         <span>Karyawan</span>
       </a>
+      <a class="nav-link" href="{{ route('penilaian.index') }}">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Penilaian Karyawan</span>
+      </a>
   </li>
 
   <!-- Sidebar Toggler (Sidebar) -->

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
+use App\Http\Controllers\Admin\EvaluationController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,8 @@ Route::prefix('/admin')->group(function() {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('karyawan', EmployeeController::class);
+
+        Route::resource('/penilaian', EvaluationController::class);
 
         Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
     });

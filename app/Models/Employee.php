@@ -10,4 +10,9 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = ['nik', 'nama', 'tempat_lahir', 'tgl_lahir', 'umur', 'jabatan', 'telp', 'alamat'];
+
+    public function evaluation()
+    {
+        return $this->hasOne(Evaluation::class);
+    }
 }

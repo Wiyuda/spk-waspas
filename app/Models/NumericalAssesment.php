@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class NumericalAssesment extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['employee_id', 'perilaku', 'penampilan', 'kedisiplinan', 'knowledge', 'inovasi'];
 }
