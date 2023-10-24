@@ -15,4 +15,9 @@ class Employee extends Model
     {
         return $this->hasOne(Evaluation::class);
     }
+
+    public function rank()
+    {
+        return $this->hasOne(Rank::class);
+    }
 }

@@ -10,6 +10,7 @@
     <div class="card shadow">
       <div class="card-body">
         <a href="{{ route('penilaian.create') }}" class="btn btn-primary">Tambah Data Penilaian</a>
+        <a href="{{ route('rangking') }}" class="btn btn-success">Rangking</a>
         @if (session('status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               {{ session('status') }}
