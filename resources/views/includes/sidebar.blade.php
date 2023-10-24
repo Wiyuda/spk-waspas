@@ -2,8 +2,8 @@
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
-      <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+      <div>
+          <img src="{{ url('assets/library/sbadmin/img/logo.png') }}" alt="Logo" width="50px">
       </div>
       <div class="sidebar-brand-text mx-3">SPK WASPAS</div>
   </a>
