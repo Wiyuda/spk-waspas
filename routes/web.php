@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\EvaluationController;
+use App\Http\Controllers\Admin\RangkingProcessController;
 use App\Http\Controllers\Auth\AuthenticationController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::prefix('/admin')->group(function() {
         Route::resource('karyawan', EmployeeController::class);
 
         Route::resource('/penilaian', EvaluationController::class);
+
+        Route::get('/rangking', [RangkingProcessController::class, 'rangking'])->name('rangking');
 
         Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
     });

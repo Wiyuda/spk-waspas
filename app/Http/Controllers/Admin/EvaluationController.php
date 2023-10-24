@@ -7,7 +7,9 @@ use App\Http\Requests\EvaluationRequest;
 use App\Http\Requests\UpdateEvaluationRequest;
 use App\Models\Employee;
 use App\Models\Evaluation;
+use App\Models\Normalization;
 use App\Models\NumericalAssesment;
+use App\Models\Rank;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -114,6 +116,14 @@ class EvaluationController extends Controller
                 'kedisiplinan' => $discipline,
                 'knowledge' => $knowledge,
                 'inovasi' => $inovation,
+            ]);
+
+            $normalization = Normalization::create([
+                'employee_id' => $validated['karyawan'],
+            ]);
+
+            $rank = Rank::create([
+                'employee_id' => $validated['karyawan'],
             ]);
 
             DB::commit();
