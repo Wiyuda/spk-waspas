@@ -12,13 +12,13 @@
         <a href="{{ route('penilaian.create') }}" class="btn btn-primary">Tambah Data Penilaian</a>
         <a href="{{ route('rangking') }}" class="btn btn-success">Rangking</a>
         @if (session('status'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              {{ session('status') }}
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          @endif
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        @endif
         <div class="table-responsive mt-3">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -38,19 +38,19 @@
               @php
                 $i = 1;
               @endphp
-              @foreach ($evaluations as $evaluation)
+              @foreach ($employees as $employee)
                 <tr>
                   <th>{{ $i++ }}</th>
-                  <td>{{ $evaluation->employee->nik }}</td>
-                  <td>{{ $evaluation->employee->nama }}</td>
-                  <td>{{ $evaluation->perilaku }}</td>
-                  <td>{{ $evaluation->penampilan }}</td>
-                  <td>{{ $evaluation->kedisiplinan }}</td>
-                  <td>{{ $evaluation->knowledge }}</td>
-                  <td>{{ $evaluation->inovasi }}</td>
+                  <td>{{ $employee->nik }}</td>
+                  <td>{{ $employee->nama }}</td>
+                  <td>{{ $employee->behavior->perilaku }}</td>
+                  <td>{{ $employee->appearance->penampilan }}</td>
+                  <td>{{ $employee->discipline->disiplin }}</td>
+                  <td>{{ $employee->knowledge->knowledge }}</td>
+                  <td>{{ $employee->inovation->inovasi }}</td>
                   <td>
-                    <a href="{{ route('penilaian.edit', $evaluation->id) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                    <form action="{{ route('penilaian.destroy', $evaluation->id) }}" method="POST" class="d-inlie">
+                    <a href="{{ route('penilaian.edit', $employee->id) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                    <form action="{{ route('penilaian.destroy', $employee->id) }}" method="POST" class="d-inlie">
                       @csrf
                       @method('delete')
                       <button type="submit" class="btn btn-danger d-inline"><i class="fas fa-trash"></i></button>

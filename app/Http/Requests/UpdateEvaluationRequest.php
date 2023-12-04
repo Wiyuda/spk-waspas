@@ -23,12 +23,21 @@ class UpdateEvaluationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'karyawan' => 'required|exists:employees,id', Rule::unique('evaluations')->ignore('employee_id', 'employee_id'), Rule::unique('numerical_accesments')->ignore('employee_id', 'employee_id'),
-            'perilaku' => 'required|in:Sangat Baik,Baik,Cukup Baik,Kurang Baik,Buruk',
-            'penampilan' => 'required|in:Sangat Baik,Baik,Cukup Baik,Kurang Baik,Buruk',
-            'kedisiplinan' => 'required|in:Sangat Disiplin,Disiplin,Cukup Disiplin,Kurang Disiplin,Buruk',
-            'knowledge' => 'required|in:A,B,C,D,E',
-            'inovasi' => 'required|in:A,B,C,D,E',
+            'karyawan' => 'required|exists:employees,id', Rule::unique('appearances')->ignore('employee_id', 'employee_id'), Rule::unique('behaviors')->ignore('employee_id', 'employee_id'), Rule::unique('disciplines')->ignore('employee_id', 'employee_id'), Rule::unique('knowledge')->ignore('employee_id', 'employee_id'), Rule::unique('inovations')->ignore('employee_id', 'employee_id'),
+            'station_routine' => 'required',
+            'breefing' => 'required',
+            'standby' => 'required',
+            'koordinasi' => 'required',
+            'kerapihan' => 'required',
+            'kesesuaian' => 'required',
+            'alat_perlindungan' => 'required',
+            'kehadiran' => 'required',
+            'kegiatan' => 'required',
+            'soft_skills' => 'required',
+            'hard_skills' => 'required',
+            'aktif' => 'required',
+            'pricipal_objective' => 'required',
+            'inovasi' => 'required'
         ];
     }
 }
