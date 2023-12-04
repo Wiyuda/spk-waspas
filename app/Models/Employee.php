@@ -11,9 +11,29 @@ class Employee extends Model
 
     protected $fillable = ['nik', 'nama', 'tempat_lahir', 'tgl_lahir', 'umur', 'jabatan', 'telp', 'alamat'];
 
-    public function evaluation()
+    public function behavior()
     {
-        return $this->hasOne(Evaluation::class);
+        return $this->hasOne(Behavior::class);
+    }
+
+    public function appearance()
+    {
+        return $this->hasOne(Appearance::class);
+    }
+
+    public function discipline()
+    {
+        return $this->hasOne(Discipline::class);
+    }
+
+    public function inovation()
+    {
+        return $this->hasOne(Inovation::class);
+    }
+
+    public function knowledge()
+    {
+        return $this->hasOne(Knowledge::class);
     }
 
     public function rank()
