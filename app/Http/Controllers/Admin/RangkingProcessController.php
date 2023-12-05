@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\Normalization;
 use App\Models\Rank;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RangkingProcessController extends Controller
 {
@@ -55,5 +56,17 @@ class RangkingProcessController extends Controller
             ->get();
         
         return view('admin.rangking.index', compact('ranks'));
+    }
+
+    public function print()
+    {
+        $ranks = Rank::with(['employee'])
+            ->orderBy('preferensi', 'desc')
+            ->get();
+        
+        $date = $ranks[0]->date;
+
+        $pdf = Pdf::loadView('admin.rangking.print', compact('ranks', 'date'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
 }

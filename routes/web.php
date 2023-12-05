@@ -32,6 +32,8 @@ Route::prefix('/admin')->group(function() {
 
         Route::get('/rangking', [RangkingProcessController::class, 'rangking'])->name('rangking');
 
+        Route::get('/print', [RangkingProcessController::class, 'print'])->name('print');
+
         Route::post('logout', [AuthenticationController::class, 'logout'])->name('logout');
     });
 
