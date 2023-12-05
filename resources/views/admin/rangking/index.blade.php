@@ -9,6 +9,7 @@
   <div class="col-md-12">
     <div class="card shadow">
       <div class="card-body">
+        <a href="{{ route('print') }}" class="btn btn-primary" target="_blank">Print</a>
         <div class="table-responsive mt-3">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -22,6 +23,7 @@
                 <th>Knowledge</th>
                 <th>Inovasi</th>
                 <th>Preferensi</th>
+                <th>Tanggal</th>
               </tr>
             </thead>
             <tbody>
@@ -39,6 +41,7 @@
                   <td>{{ $rank->employee->knowledge->knowledge }}</td>
                   <td>{{ $rank->employee->inovation->inovasi }}</td>
                   <td>{{ $rank->preferensi }}</td>
+                  <td>{{ $rank->date }}</td>
                 </tr>
               @endforeach
             </tbody>
