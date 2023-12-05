@@ -5,35 +5,32 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Normalization;
-use App\Models\NumericalAssesment;
 use App\Models\Rank;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class RangkingProcessController extends Controller
 {
     public function rangking()
     {
-        $evaluations = NumericalAssesment::query()
-            ->select('employee_id', 'perilaku', 'penampilan', 'kedisiplinan', 'knowledge', 'inovasi')
-            ->get();
-
+        $evaluations = Employee::with(['behavior', 'appearance', 'discipline', 'inovation', 'knowledge'])->whereIn('id', function($query) {
+            $query->select('employee_id')->from('behaviors');
+        })->get();
+                    
         foreach($evaluations as $evaluation) {
-            $behavior = $evaluation->max('perilaku');
-            $appearance = $evaluation->max('penampilan');
-            $discipline = $evaluation->max('kedisiplinan');
-            $knowledge = $evaluation->max('knowledge');
-            $inovation = $evaluation->max('inovasi');
+            $behavior = $evaluation->behavior->max('perilaku');
+            $appearance = $evaluation->appearance->max('penampilan');
+            $discipline = $evaluation->discipline->max('disiplin');
+            $knowledge = $evaluation->knowledge->max('knowledge');
+            $inovation = $evaluation->inovation->max('inovasi');
 
-
-            $behaviorNormalization = ($evaluation->perilaku / $behavior);
-            $appearanceNormalization = ($evaluation->penampilan / $appearance);
-            $disciplineNormalization = ($evaluation->kedisiplinan / $discipline);
-            $knowledgeNormalization = ($evaluation->knowledge / $knowledge);
-            $inovationNormalization = ($evaluation->inovasi / $inovation);
-
-            $normalization = Normalization::where('employee_id', $evaluation->employee_id)->update([
-                'employee_id' => $evaluation->employee_id,
+            $behaviorNormalization = ($evaluation->behavior->perilaku / $behavior);
+            $appearanceNormalization = ($evaluation->appearance->penampilan / $appearance);
+            $disciplineNormalization = ($evaluation->discipline->disiplin / $discipline);
+            $knowledgeNormalization = ($evaluation->knowledge->knowledge / $knowledge);
+            $inovationNormalization = ($evaluation->inovation->inovasi / $inovation);
+            
+            $normalization = Normalization::where('employee_id', $evaluation->id)->update([
+                'employee_id' => $evaluation->id,
                 'perilaku' => $behaviorNormalization,
                 'penampilan' => $appearanceNormalization,
                 'kedisiplinan' => $disciplineNormalization,
@@ -45,11 +42,11 @@ class RangkingProcessController extends Controller
         $normalizations = Normalization::all();
 
         foreach($normalizations as $normalization) {
-            $preferensi = ($normalization->perilaku * 0.3) + ($normalization->penampilan * 0.05) + ($normalization->kedisiplinan * 0.3) + ($normalization->knowledge * 0.3) + ($normalization->inovasi * 0.05);
-
+            $preferences = ($normalization->perilaku * 0.3) + ($normalization->penampilan * 0.05) + ($normalization->kedisiplinan * 0.3) + ($normalization->knowledge * 0.3) + ($normalization->inovasi * 0.05);
+            
             $rank = Rank::where('employee_id', $normalization->employee_id)->update([
-                'employee_id' => $normalization->employee_id,
-                'preferensi' => $preferensi,
+                'preferensi' => $preferences,
+                'date' => date('Y-m-d')
             ]);
         }
 

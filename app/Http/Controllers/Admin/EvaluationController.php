@@ -211,6 +211,7 @@ class EvaluationController extends Controller
         $employee->knowledge->subKnowledge->delete();
         $employee->knowledge->delete();
         $employee->inovation->delete();
+        $employee->rank->delete();
 
         return redirect()->route('penilaian.index')->with('status', 'Data Penilaian karyawan berhasil di edit');
     }
