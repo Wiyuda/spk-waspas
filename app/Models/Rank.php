@@ -9,7 +9,7 @@ class Rank extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['employee_id', 'preferensi'];
+    protected $fillable = ['employee_id', 'preferensi', 'date'];
 
     public function employee()
     {

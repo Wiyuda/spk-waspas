@@ -13,6 +13,7 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
+                <th>Rank</th>
                 <th>NIK</th>
                 <th>Nama</th>
                 <th>Perilaku</th>
@@ -21,7 +22,6 @@
                 <th>Knowledge</th>
                 <th>Inovasi</th>
                 <th>Preferensi</th>
-                <th>Rank</th>
               </tr>
             </thead>
             <tbody>
@@ -30,15 +30,15 @@
               @endphp
               @foreach ($ranks as $rank)
                 <tr>
+                  <th>{{ $i++ }}</th>
                   <td>{{ $rank->employee->nik }}</td>
                   <td>{{ $rank->employee->nama }}</td>
-                  <td>{{ $rank->employee->evaluation->perilaku }}</td>
-                  <td>{{ $rank->employee->evaluation->penampilan }}</td>
-                  <td>{{ $rank->employee->evaluation->kedisiplinan }}</td>
-                  <td>{{ $rank->employee->evaluation->knowledge }}</td>
-                  <td>{{ $rank->employee->evaluation->inovasi }}</td>
+                  <td>{{ $rank->employee->behavior->perilaku }}</td>
+                  <td>{{ $rank->employee->appearance->penampilan }}</td>
+                  <td>{{ $rank->employee->discipline->disiplin }}</td>
+                  <td>{{ $rank->employee->knowledge->knowledge }}</td>
+                  <td>{{ $rank->employee->inovation->inovasi }}</td>
                   <td>{{ $rank->preferensi }}</td>
-                  <th>{{ $i++ }}</th>
                 </tr>
               @endforeach
             </tbody>
